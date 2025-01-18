@@ -1,15 +1,26 @@
-import logging as log
 import tkinter as tk
 
-WINDOW  = tk.TK()
+def create_window(window, window_name="NULL", WHEIGHT=600, WWIDTH=800):
+    """
+    Configure an existing Tkinter window and return a frame for adding elements.
 
-WHEIGHT = 600
-WWIDTH = 800
+    Parameters:
+        window (tk.Tk): The existing Tkinter window object to configure.
+        window_name (str): The title of the window.
+        WHEIGHT (int): The height of the window.
+        WWIDTH (int): The width of the window.
 
-container = tk.Frame(WINDOW)
+    Returns:
+        tk.Frame: A single frame for adding widgets and elements.
+    """
+   
+    window.title(window_name)
+    window.geometry(f"{WWIDTH}x{WHEIGHT}")
 
-MAIN_FRAME = tk.Frame(container)
-CHECKER_FRAME = tk.Frame(container)
-COMPARE_FRAME = tk.Frame(container)
+    container = tk.Frame(window)
+    container.pack(fill="both", expand=True)
 
-frames = [MAIN_FRAME, CHECKER_FRAME, COMPARE_FRAME]
+    frame = tk.Frame(container)
+    frame.pack(fill="both", expand=True)
+    
+    return frame
