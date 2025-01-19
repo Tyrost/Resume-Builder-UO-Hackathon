@@ -22,5 +22,6 @@ def create_window(window, window_name="NULL", WHEIGHT=600, WWIDTH=800):
 
     frame = tk.Frame(container)
     frame.pack(fill="both", expand=True)
+
     
     return frame
