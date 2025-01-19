@@ -96,7 +96,7 @@ class PDF:
 
 
 if __name__ == "__main__":
-    resume1 = PDF(os.path.abspath("pdfs/Resume1.pdf"))
+    resume1 = PDF(os.path.abspath("resumes/Resume1.pdf"))
     
     
     
