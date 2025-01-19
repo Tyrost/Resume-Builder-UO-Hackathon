@@ -6,7 +6,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import tkinter as tk
 import json
 
-from scripts.Resume import Resume
+from scripts.resume import Resume
 from components.SystemOutputBox import SystemOutputBox
 from components.main import create_window
 from components.init_components import create_label, create_elements

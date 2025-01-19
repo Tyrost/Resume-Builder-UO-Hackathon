@@ -13,7 +13,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from components.init_components import create_label
 from components.main import create_window
-from scripts.Resume import Resume
+from scripts.resume import Resume
 
 def upload_pdf_file(upload_status_label, img_label):
     """
