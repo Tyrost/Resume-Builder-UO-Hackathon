@@ -30,7 +30,7 @@ def create_resume_window(parent: tk.Tk, on_back_to_main=None):
     # Create an image + text editor inside builder_frame
     # (We pass builder_frame for both the parent of the image and text editor 
     # so that when builder_frame is destroyed, these widgets go away too.)
-    null, text_editor = create_elements(builder_frame, "sample_resume1.png", width='80', height='5')
+    text_editor = tk.Text(builder_frame, wrap="Job description:", width=80, height=5, font=("Arial", 12))
 
     # Create a "Main Menu" button that calls on_back_to_main
     back_to_main_btn = tk.Button(

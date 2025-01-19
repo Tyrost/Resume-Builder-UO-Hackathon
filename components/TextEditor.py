@@ -96,3 +96,28 @@ class TextEditor:
         self.current_text = self.text_editor.get('1.0', 'end-1c').strip()
         if self.current_text == self.placeholder_text:
             self.current_text = ''
+            
+    def get(self):
+        """
+        Retrieve the current text from the TextEditor, excluding the placeholder.
+
+        Returns:
+            str: The current text content of the editor. If the placeholder is present,
+                an empty string is returned.
+        """
+        content = self.text_editor.get('1.0', 'end-1c').strip()  # Get text from the Text widget
+        if content == self.placeholder_text:  # Return an empty string if placeholder is present
+            return ''
+        return content
+    
+    def bind(self, sequence, callback):
+        self.text_editor.bind(sequence, callback)
+        
+class CustomText(tk.Text):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.bind("<Return>", self.handle_enter)
+
+    def handle_enter(self, event=None):
+        print("Custom Enter key behavior!")  # Replace with your logic
+        return 'break'  # Prevent default action
