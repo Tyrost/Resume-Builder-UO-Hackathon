@@ -1,6 +1,6 @@
 import tkinter as tk
 
-def create_window(window, window_name="NULL", WHEIGHT=800, WWIDTH=1200):
+def create_window(window:tk.Tk, window_name="NULL", WHEIGHT=800, WWIDTH=1200):
     """
     Configure an existing Tkinter window and return a frame for adding elements.
 
@@ -16,8 +16,11 @@ def create_window(window, window_name="NULL", WHEIGHT=800, WWIDTH=1200):
    
     window.title(window_name)
     window.geometry(f"{WWIDTH}x{WHEIGHT}")
-
-    container = tk.Frame(window)
+    
+    window.minsize(WWIDTH, WHEIGHT)
+    window.maxsize(WWIDTH, WHEIGHT)
+    
+    container = tk.Frame(window,width=WWIDTH, height=WHEIGHT)
     container.pack(fill="both", expand=True)
 
     frame = tk.Frame(container)
