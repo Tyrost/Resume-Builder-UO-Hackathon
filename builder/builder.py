@@ -3,7 +3,7 @@ import os
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-import components.intit_components
+import components.init_components
 from components.main import create_window
 import tkinter as tk
 from PIL import Image, ImageTk
