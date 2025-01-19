@@ -10,7 +10,8 @@ client = OpenAI(api_key="") # Add your API key here
 class Resume:
     def __init__(self, path, page_size=letter):
         self.path = path  
-        self.job_description = None
+        self.new_text = ""
+        self.job_description = "Software engineer at microsoft. Working on copilot."
         self.page_size = page_size
         self.canvas = canvas.Canvas(filename=self.path, pagesize=page_size) ######
 
@@ -62,8 +63,9 @@ class Resume:
         self.new_text = answer.content
         return 
     
-    def score_resume(self, job):
-        Resume.resume_analysis(self)
+    def score_resume(self):
+        if self.new_text == "":
+            Resume.resume_analysis(self)
 
 
         prompt = f'''Score the following resume based on how good it is for a job application. The resume is as follows: {self.new_text}
@@ -84,6 +86,27 @@ class Resume:
         answer = response.choices[0].message
         return answer.content
 
+    def interview_questions(self):
+        if self.new_text == "":
+            Resume.resume_analysis(self)
+
+        prompt = f'''Generate interview questions based on the following resume: {self.new_text}
+        I also want it to take in {self.job_description}(only use this if it is not None) and generate questions based gaps in the resume and what is useful for the job_description.
+        Return only 5 questions
+        '''
+
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",  # Replace with "gpt-4" for better quality
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant that generates interview questions based on a resume."},
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=400
+        )
+        answer = response.choices[0].message
+        return answer.content
+
+
     def job_description(self, job_description):
         self.job_description = job_description
         
@@ -91,7 +114,6 @@ class Resume:
 
 if __name__ == "__main__":
     resume1 = Resume(os.path.abspath("resumes/Resume1.pdf"))
-    print(resume1.score_resume())
     
     
     
