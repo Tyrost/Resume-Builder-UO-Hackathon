@@ -9,7 +9,7 @@ import tkinter as tk
 # from PIL import Image, ImageTk
 # from components.TextEditor import TextEditor
 # from components.Button import Button
-
+ 
 # _______ Encapsulation _______ #
 
 def create_checker_window():

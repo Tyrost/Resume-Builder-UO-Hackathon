@@ -78,7 +78,7 @@ class TextEditor:
     def __remove_placeholder(self, event):
         if self.text_editor.get('1.0', 'end-1c') == self.placeholder_text:
             self.text_editor.delete('1.0', 'end')
-            self.text_editor.config(fg='black')
+            self.text_editor.config(fg='white')
     
     def __add_placeholder(self, event):
         if not self.text_editor.get('1.0', 'end-1c'):
