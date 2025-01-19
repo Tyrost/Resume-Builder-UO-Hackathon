@@ -6,6 +6,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from components.main import create_window
 import tkinter as tk
 from PIL import Image, ImageTk
+from components.Button import Button
 
 
 WINDOW = tk.Tk()
@@ -40,12 +41,12 @@ description= (
     "for your next career opportunity.\n\n"
 )
 
-create_label(frame, "ResumAI", ("Times New Roman", 60), 0, 0, pady=10, sticky="w")
-create_label(frame, description, ("Times New Roman", 14), 1, 1, padx=100, pady=15, sticky="e", wraplength=700)
-create_label(frame, "Upload Your Resume For Revision", ("Times New Roman", 22), 1, 0, pady=40, sticky="w")
-create_label(frame, "Build Your Resume Here", ("Times New Roman", 22), 3, 0, pady=120, sticky="w")
+create_label(frame, "ResumAI", ("Times New Roman", 60), 0, 0, pady=0, sticky="w")
+create_label(frame, description, ("Times New Roman", 14), 1, 1, padx=100, pady=0, sticky="e", wraplength=700)
+create_label(frame, "Upload Your Resume For Revision", ("Times New Roman", 22), 1, 0, pady=0, sticky="w")
+create_label(frame, "Build Your Resume Here", ("Times New Roman", 22), 3, 0, pady=0, sticky="w")
 
-def create_image(frame: tk.Frame, width = 300, height = 400):
+def create_image(frame: tk.Frame, row, column, width=300, height=400, padx=20, pady=10, sticky="w"):
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(script_dir)
@@ -56,11 +57,31 @@ def create_image(frame: tk.Frame, width = 300, height = 400):
     image = ImageTk.PhotoImage(resized_image)
 
     image_label = tk.Label(frame, image=image)
-    image_label.pack()
+    image_label.grid(row=row, column=column, padx=padx, pady=pady, sticky=sticky)
 
     frame.image = image
     return image, image_label
 
-create_image(frame, width=300, height=400)
+create_image(frame, row=3, column=1, width=200, height=300, padx=300, pady=0, sticky="e")
+
+upload_button = Button(
+        frame,
+        label="Upload",
+        height=50,
+        width=20,
+        defcolor="green",
+        optcolor="lightgreen"
+    )
+upload_button.grid(row=2, column=0, pady=0, padx=120, sticky="w")
+
+create_button = Button(
+        frame,
+        label="Create",
+        height=50,
+        width=20,
+        defcolor="green",
+        optcolor="lightgreen")
+
+create_button.grid(row=4, column=0, pady=0, padx=120, sticky="w")
 
 WINDOW.mainloop()
