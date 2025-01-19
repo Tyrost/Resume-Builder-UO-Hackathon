@@ -3,6 +3,8 @@ from interview.resume_app import create_resume_window
 from checker.checker import create_checker_window
 from components import create_window
 from main_menu.menu import create_main_menu_frame
+import os
+import shutil
 
 class MAIN:
     def __init__(self):
@@ -65,8 +67,26 @@ class MAIN:
         )
         self.MAIN_FRAME.pack(fill="both", expand=True)
         
+    def cleanup(self):
+        """Remove the PDFs directory and JSON file after the program exits."""
+        print("Performing cleanup...")
+        # Remove PDFs directory
+        pdfs_dir = os.path.abspath("PDFs")
+        if os.path.exists(pdfs_dir):
+            shutil.rmtree(pdfs_dir)  # Remove the entire directory
+            print(f"Removed directory: {pdfs_dir}")
+
+        # Remove job description JSON file
+        json_file = os.path.abspath("components/job_description.json")
+        if os.path.exists(json_file):
+            os.remove(json_file)
+            print(f"Removed file: {json_file}")
+            
     def run(self):
-        self.MASTER_WINDOW.mainloop()
+        try:
+            self.MASTER_WINDOW.mainloop()  # Run the main event loop
+        finally:
+            self.cleanup()
         
 ############################################
 
