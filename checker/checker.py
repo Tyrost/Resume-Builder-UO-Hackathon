@@ -43,11 +43,11 @@ def is_clicked_event(btn:Button, func):
 
 # _______ Encapsulation _______ #
 
+
 def placeholder_func():
     pass
 
 def create_checker_window(WINDOW:tk.Tk):
-
     # Creation
     
     checker_frame = create_window(WINDOW, window_name='checker_frame')
