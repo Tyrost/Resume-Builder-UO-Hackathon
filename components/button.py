@@ -22,6 +22,3 @@ class Button:
     def click_btn(self, function):
         self.button.config(command=function)
         return self.button
-
-root = tk.Tk()
-root.mainloop()
