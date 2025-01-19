@@ -58,10 +58,15 @@ def create_output_box(frame, width=50, height=10, font= ("Arial", 14)):
 
 # _______ Encapsulation _______ #
 
-def on_button_click(output_box):
+def on_button_click1(output_box):
     output_box.insert(tk.END, "10\n")
 
-def create_builder_window():
+#def on_button_click2(output_box):
+    #output_box.insert(tk.END, "9\n")
+
+
+
+def create_app_window():
     WINDOW = tk.Tk()
     
     builder_frame = create_window(WINDOW, window_name='builder_frame')
@@ -78,8 +83,8 @@ def create_builder_window():
     output_generate_box = create_output_box(builder_frame, width=60, height=40)
     textbox_label = create_label(builder_frame, text="Input Job Description Here", font = ('Lexend', 15))
     #Button Output
-    build_rating_button.click_btn(lambda:on_button_click(output_rate_box))
-    build_generate_button.click_btn(lambda:on_button_click(output_generate_box))
+    build_rating_button.click_btn(lambda:on_button_click1(output_rate_box))
+    #build_generate_button.click_btn(lambda:on_button_click2(output_generate_box))
     
 
     
