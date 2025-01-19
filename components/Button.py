@@ -1,7 +1,7 @@
 import tkinter as tk
 
 class Button:
-    def __init__(self, root, label="", height=50, width=100, defcolor="black", optcolor=None, func=None):
+    def __init__(self, root, label="", height=50, width=100, defcolor="black", optcolor=None, command=None):
         if height <= 0 or width <= 0:
             raise ValueError("Height and width must be positive numbers")
         
@@ -10,7 +10,7 @@ class Button:
         self.defcolor = defcolor
         self.optcolor = optcolor
         self.is_pressed = False
-        self.command = func
+        self.command = command
 
         self.button = tk.Button(
             root,

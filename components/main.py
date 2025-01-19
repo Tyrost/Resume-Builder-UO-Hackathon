@@ -1,29 +1,19 @@
 import tkinter as tk
 
-def create_window(window:tk.Tk, WHEIGHT=800, WWIDTH=1200):
+def create_window(window: tk.Tk, WHEIGHT=800, WWIDTH=1200):
     """
-    Configure an existing Tkinter window and return a frame for adding elements.
-
-    Parameters:
-        window (tk.Tk): The existing Tkinter window object to configure.
-        window_name (str): The title of the window.
-        WHEIGHT (int): The height of the window.
-        WWIDTH (int): The width of the window.
+    Configure the Tkinter root window and return a frame.
 
     Returns:
-        tk.Frame: A single frame for adding widgets and elements.
+        tk.Frame: A frame placed inside the root window.
     """
-   
     window.geometry(f"{WWIDTH}x{WHEIGHT}")
-    
     window.minsize(WWIDTH, WHEIGHT)
     window.maxsize(WWIDTH, WHEIGHT)
-    
-    container = tk.Frame(window,width=WWIDTH, height=WHEIGHT)
-    container.pack(fill="both", expand=True)
 
-    frame = tk.Frame(container)
+    # Create just one frame (instead of container + frame).
+    frame = tk.Frame(window, width=WWIDTH, height=WHEIGHT)
     frame.pack(fill="both", expand=True)
 
-    
     return frame
+
