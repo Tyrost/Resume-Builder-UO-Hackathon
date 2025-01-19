@@ -1,45 +1,16 @@
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
-import reportlab
 import fitz
 from openai import OpenAI
 import sys
 import os
 
-client = OpenAI(api_key="asdbfiu") # Add your API key here
+client = OpenAI(api_key="") # Add your API key here
 
-class PDF:
+class Resume:
     def __init__(self, path, page_size=letter):
-        self.path = path    
-        self.file_name = None
+        self.path = path  
         self.job_description = None
-        self.skills = None
-        self.work_experience = []
-        self.education = None
-        self.certifications = None
-        self.awards = None
-        self.volunteer = None
-        self.title = None
-        self.name = None
-        self.contact_info = None
-        self.address = None
-        self.objective = None
-        self.linkedin = None
-        self.github = None
-        self.other_profiles = None
-        self.languages = None            
-        self.hobbies = None
-        self.references = None
-        self.projects = None
-        self.publications = None
-        self.affiliations = None
-
-        self.job_description = {
-            "Junior software engineer": "",
-            "Software engineer": "",
-        }
-
-
         self.page_size = page_size
         self.canvas = canvas.Canvas(filename=self.path, pagesize=page_size) ######
 
@@ -66,9 +37,7 @@ class PDF:
 
         return pdf_text
 
-    
-    
-    def populate_from_text(self):
+    def resume_analysis(self):
         self.text = self.__extract_text_from_pdf()
         headers_list = "job_description, skills, work_experience, education, certifications, awards, volunteer, title, name, contact_info, address, objective, linkedin, github, other_profiles, languages, hobbies, references, projects, publications, affiliations"
         
@@ -80,7 +49,7 @@ class PDF:
     
         # Use the ChatCompletion endpoint
         response = client.chat.completions.create(
-            model="gpt-4o",  # Replace with "gpt-4" for better quality
+            model="gpt-4o-mini",  # Replace with "gpt-4" for better quality
             messages=[
                 {"role": "system", "content": "You are a helpful assistant that categorizes text based on predefined headers."},
                 {"role": "user", "content": prompt}
@@ -90,13 +59,39 @@ class PDF:
         
         # Extract the response text
         answer = response.choices[0].message
-        self.text = answer.content
-        return
+        self.new_text = answer.content
+        return 
+    
+    def score_resume(self, job):
+        Resume.resume_analysis(self)
+
+
+        prompt = f'''Score the following resume based on how good it is for a job application. The resume is as follows: {self.new_text}
+        I also want it to take in {self.job_description}(only use this if it is not None) and score the resume based on how well it fits the job description.
+        I want the score to be a number 1 - 100 with 100 being the best fit.
+
+        return only one number
+        '''
+
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",  # Replace with "gpt-4" for better quality
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant that scores resumes based on how well they fit a job description."},
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=1
+        )
+        answer = response.choices[0].message
+        return answer.content
+
+    def job_description(self, job_description):
+        self.job_description = job_description
         
 
 
 if __name__ == "__main__":
-    resume1 = PDF(os.path.abspath("resumes/Resume1.pdf"))
+    resume1 = Resume(os.path.abspath("resumes/Resume1.pdf"))
+    print(resume1.score_resume())
     
     
     
