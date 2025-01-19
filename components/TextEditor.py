@@ -32,6 +32,8 @@ class TextEditor:
         self.text_editor.bind('<Return>', self.__return_pressed)
         self.text_editor.bind('<Escape>', self.__escape_pressed)
 
+    # tkinter object methods
+    
     def pack(self, **kwargs):
         self.text_editor.pack(**kwargs)
 
@@ -41,7 +43,7 @@ class TextEditor:
     def get_text(self):
         return self.current_text
     
-    # Discrete Methods__
+    # Discrete/Private Methods
     
     def __show_temporary_placeholder(self, temp_text):
         self.text_editor.delete('1.0', 'end')
@@ -106,7 +108,7 @@ class TextEditor:
                 an empty string is returned.
         """
         content = self.text_editor.get('1.0', 'end-1c').strip()  # Get text from the Text widget
-        if content == self.placeholder_text:  # Return an empty string if placeholder is present
+        if content == self.placeholder_text:
             return ''
         return content
     
@@ -119,5 +121,5 @@ class CustomText(tk.Text):
         self.bind("<Return>", self.handle_enter)
 
     def handle_enter(self, event=None):
-        print("Custom Enter key behavior!")  # Replace with your logic
-        return 'break'  # Prevent default action
+        print("Custom Enter key behavior!")
+        return 'break'

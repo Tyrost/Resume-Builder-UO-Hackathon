@@ -31,20 +31,18 @@ def create_main_menu_frame(parent, on_upload=None, on_create=None):
     :param on_create: Callback for the 'Create' button click.
     """
     main_menu_frame = create_window(parent)
-    # Example: set a dark background so that white text is visible
+
     main_menu_frame.config(bg="gray20")
 
-    # 1. Title at the top
     title_label = create_label(
         main_menu_frame, 
         text='ResumAI', 
         font=("Times New Roman", 60)
     )
-    # style if needed (e.g. white text on dark background):
+
     title_label.config(bg="gray20", fg="white")
     title_label.pack(side="top", pady=15)
 
-    # 2. Description just below the title
     description_label = create_label(
         main_menu_frame, 
         text=description, 
@@ -53,7 +51,6 @@ def create_main_menu_frame(parent, on_upload=None, on_create=None):
     description_label.config(bg="gray20", fg="white", justify="left")
     description_label.pack(side="top", padx=20, pady=10)
 
-    # 3. A frame on the left for the “Upload” and “Create” controls
     left_frame = tk.Frame(main_menu_frame, bg="gray20")
     left_frame.pack(side="left", fill="both", expand=True, padx=20, pady=20)
 
@@ -92,7 +89,6 @@ def create_main_menu_frame(parent, on_upload=None, on_create=None):
     )
     create_btn.pack(pady=5)
 
-    # 4. A frame on the right for the image
     right_frame = tk.Frame(main_menu_frame, bg="gray20")
     right_frame.pack(side="right", fill="both", expand=True, padx=20, pady=20)
 

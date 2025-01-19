@@ -7,6 +7,7 @@ import tkinter as tk
 from PIL import Image, ImageTk
 from components.TextEditor import TextEditor
 from components.Button import Button
+ 
 import fitz
  
 # _______ Element Creation _______ #
@@ -60,7 +61,7 @@ def create_elements(parent, width='50', height='20'):
     """
     # Paths
     pdf_path = os.path.abspath('PDFs/file.pdf')  # Path to uploaded PDF
-    preview_image_path = os.path.abspath('components/images/preview.png')  # Path to save preview image
+    preview_image_path = os.path.abspath('components/images/preview.jpg')  # Path to save preview image
 
     # Generate image preview if PDF exists
     image_to_display = preview_image_path  # Default to sample image
