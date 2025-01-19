@@ -13,7 +13,7 @@ import tkinter as tk
 # _______ Encapsulation _______ #
 
 def create_checker_window():
-    WINDOW = tk.Tk()
+    WINDOW = tk.Tk() 
     
     checker_frame = create_window(WINDOW, window_name='checker_frame')
     img_label, text_editor = create_elements(WINDOW, checker_frame)

@@ -1,0 +1,54 @@
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from components.intit_components import *
+from components.main import create_window
+import tkinter as tk
+# from PIL import Image, ImageTk
+# from components.TextEditor import TextEditor
+# from components.Button import Button
+
+# _______ Encapsulation _______ #
+
+
+description= (
+    "Welcome to ResumAI - Your AI - Powered Resume Assistant!\n\n"
+    "At ResumAI, we leverage the power of AI to help you craft or update your resume with ease.\n\n"
+    "Whether you're starting from scratch or looking to revise an existing document, our intelligent\n\n"
+    "assistant guides you every step of the way. With tailored suggestions, industry-specific templates,\n\n "
+    "expert formatting tips, you can create a professional resume that stands out. Let our AI help you\n\n "
+    "highlight your skills, experience, and accomplishments, ensuring that your resume is polished and ready\n\n"
+    "for your next career opportunity.\n\n"
+)
+
+def create_main_menu_window():
+    WINDOW = tk.Tk() 
+    
+    main_menu_frame = create_window(WINDOW, window_name='ResumAI')
+    # img_label, text_editor = create_elements(WINDOW, main_menu_frame)
+    
+    upload_btn = create_button(main_menu_frame, "Upload", 10, 6)
+    check_btn = create_button(main_menu_frame, "Create", 10, 6)
+    
+    upload_label = create_label(main_menu_frame, text="Upload Your Resume For Revision", font=("Times New Roman", 22))
+    build_label = create_label(main_menu_frame, text="Start Building A Brand New Resume", font=("Times New Roman", 22))
+    description_label = create_label(main_menu_frame, text=description, font=("Times New Roman", 14))
+    title_label = create_label(main_menu_frame, text='ResumAI', font=("Times New Roman", 60))
+    # Placement
+    
+    upload_btn.place(x=100, y=300)
+    check_btn.place(x=100, y = 600)
+    
+    # img_label.place(x=400, y = 50)
+    # text_editor.place(x=50, y= 450)
+    
+    upload_label.place(x=10, y=200)
+    description_label.place(x=500, y = 100)
+    title_label.place(x=10, y=10)
+    build_label.place(x=10, y= 500)
+    # Start the main loop
+    WINDOW.mainloop()
+
+create_main_menu_window()
