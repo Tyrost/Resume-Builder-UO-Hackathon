@@ -10,11 +10,11 @@ from components.Button import Button
  
 # _______ Element Creation _______ #
 
-def create_image(frame: tk.Frame, width = 300, height = 400):
+def create_image(frame: tk.Frame, file_name, width = 300, height = 400):
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(script_dir)
-    image_path = os.path.join(project_root, "components", "images", "sample_resume1.png")
+    image_path = os.path.join(project_root, "components", "images", f"{file_name}")
 
     original_image = Image.open(image_path)
     resized_image = original_image.resize((width, height))
@@ -32,7 +32,7 @@ def create_label(frame, text = "", font = ('Lexend', 15)):
     
     return label
 
-def create_button(frame, label, width = 2, height=5):
+def create_button(frame, label, width = 10, height=3, command=None):
     btn = Button(frame, label=label, width=width, height=height)
     btn.pack()
     
@@ -43,8 +43,8 @@ def create_textbox(window, placeholder_text='Job description:', width='50', heig
     editor.pack()
     return editor
 
-def create_elements(window, frame):
-    null, img_label = create_image(frame)
+def create_elements(window, frame, file_name):
+    null, img_label = create_image(frame, file_name)
     editor = create_textbox(window)
     
     return img_label, editor
