@@ -32,7 +32,7 @@ def create_label(frame, text = "", font = ('Lexend', 15)):
     
     return label
 
-def create_button(frame, label, width = 10, height=3):
+def create_button(frame, label, width = 10, height=3, command=None):
     btn = Button(frame, label=label, width=width, height=height)
     btn.pack()
     
