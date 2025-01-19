@@ -1,6 +1,6 @@
 import tkinter as tk
 
-def create_window(window, window_name="NULL", WHEIGHT=600, WWIDTH=800):
+def create_window(window, window_name="NULL", WHEIGHT=800, WWIDTH=1200):
     """
     Configure an existing Tkinter window and return a frame for adding elements.
 
