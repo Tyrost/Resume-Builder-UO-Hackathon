@@ -7,7 +7,7 @@ import tkinter as tk
 from PIL import Image, ImageTk
 from components.TextEditor import TextEditor
 from components.Button import Button
-
+ 
 # _______ Element Creation _______ #
 
 def create_image(frame: tk.Frame, file_name, width = 300, height = 400):
