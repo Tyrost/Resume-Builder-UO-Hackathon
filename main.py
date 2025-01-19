@@ -23,11 +23,10 @@ class MAIN:
 ############################################
 
     def go_to_checker(self):
-        """Destroy the MAIN frame, create the CHECKER frame."""
+        
         print("Destroying MAIN, creating CHECKER.")
         self.MAIN_FRAME.destroy()
 
-        # Provide a callback so the checker can go back to main
         self.CHECKER_FRAME = create_checker_window(
             parent=self.MASTER_WINDOW,
             on_back_to_main=self.go_back_to_main
@@ -35,7 +34,6 @@ class MAIN:
         self.CHECKER_FRAME.pack(fill="both", expand=True)
 
     def go_to_interview(self):
-        """Destroy the Main frame, then create the Interview frame."""
         print("Destroying MAIN, creating INTERVIEW.")
         self.MAIN_FRAME.destroy()
 
@@ -51,48 +49,62 @@ class MAIN:
         if hasattr(self, "CHECKER_FRAME"):
             print("Destroying CHECKER.")
             self.CHECKER_FRAME.destroy()
-            del self.CHECKER_FRAME  # Optional cleanup
+            del self.CHECKER_FRAME
 
-        # If the interview frame exists, destroy it
         if hasattr(self, "INTERVIEW_FRAME"):
             print("Destroying INTERVIEW.")
             self.INTERVIEW_FRAME.destroy()
             del self.INTERVIEW_FRAME
 
-        # Now recreate the MAIN menu
         self.MAIN_FRAME = create_main_menu_frame(
             parent=self.MASTER_WINDOW,
             on_upload=self.go_to_checker,
             on_create=self.go_to_interview
         )
         self.MAIN_FRAME.pack(fill="both", expand=True)
-        
-    def cleanup(self):
-        """Remove the PDFs directory and JSON file after the program exits."""
-        print("Performing cleanup...")
-        # Remove PDFs directory
-        pdfs_dir = os.path.abspath("PDFs")
-        if os.path.exists(pdfs_dir):
-            shutil.rmtree(pdfs_dir)  # Remove the entire directory
-            print(f"Removed directory: {pdfs_dir}")
 
-        # Remove job description JSON file
-        json_file = os.path.abspath("components/job_description.json")
-        if os.path.exists(json_file):
-            os.remove(json_file)
-            print(f"Removed file: {json_file}")
-            
     def run(self):
-        try:
-            self.MASTER_WINDOW.mainloop()  # Run the main event loop
-        finally:
-            self.cleanup()
-        
+        self.MASTER_WINDOW.mainloop()  # Run the main event loop
+
 ############################################
 
+def cleanup_files():
+    """
+    Deletes specified files at the end of the program.
+    """
+    try:
+        pdf = os.path.abspath('components/job_description.json')
+        description = os.path.abspath('PDFs/file.pdf')
+
+        # Delete the PDF file if it exists
+        if os.path.exists(pdf):
+            try:
+                os.remove(pdf)
+                print(f"Deleted: {pdf}")
+            except PermissionError:
+                print(f"PermissionError: Could not delete {pdf}. File may be in use.")
+            except Exception as e:
+                print(f"Error deleting {pdf}: {e}")
+        else:
+            print(f"File not found: {pdf}")
+
+        # Delete the ``description`` directory if it exists
+        if os.path.exists(description):
+            try:
+                os.remove(description)
+                print(f"Deleted: {description}")
+            except PermissionError:
+                print(f"PermissionError: Could not delete {description}. Directory may be in use.")
+            except Exception as e:
+                print(f"Error deleting {description}: {e}")
+        else:
+            print(f"File not found: {description}")
+    except Exception as e:
+        print(f"General error during cleanup: {e}")
 
 if __name__ == "__main__":
     app = MAIN()
-    app.run()
-
-
+    try:
+        app.run()
+    finally:
+        cleanup_files()
