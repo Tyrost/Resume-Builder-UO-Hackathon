@@ -46,8 +46,8 @@ def create_textbox(parent, placeholder_text='Job description:',
     return editor
 
 
-def create_elements(parent, file_name):
+def create_elements(parent, file_name, width = '50', height = '20'):
     # Example function that returns an image label + a textbox
     _, img_label = create_image(parent, file_name)
-    editor = create_textbox(parent)
+    editor = create_textbox(parent, width=width, height=height)
     return img_label, editor
