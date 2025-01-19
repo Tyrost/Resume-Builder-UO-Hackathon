@@ -14,35 +14,38 @@ import tkinter as tk
 
 
 description= (
-    "Welcome to ResumAI - Your AI - Powered Resume Assistant!\n\n"
-    "At ResumAI, we leverage the power of AI to help you craft or update your resume with ease.\n\n"
-    "Whether you're starting from scratch or looking to revise an existing document, our intelligent\n\n"
-    "assistant guides you every step of the way. With tailored suggestions, industry-specific templates,\n\n "
-    "expert formatting tips, you can create a professional resume that stands out. Let our AI help you\n\n "
-    "highlight your skills, experience, and accomplishments, ensuring that your resume is polished and ready\n\n"
-    "for your next career opportunity.\n\n"
+    "Welcome to ResumAI - Your AI-Powered Hiring Assistant!\n\n"
+    "At ResumAI, we harness the power of AI to transform the hiring process by evaluating resumes with \n\n"
+    "precision and ensuring candidates' qualifications are assessed accurately and efficiently every time.\n\n"
+    "Our intelligent assistant goes beyond resume analysis by generating tailored interview questions\n\n"
+    "to help employers conduct insightful and effective interviews that uncover top talent.\n\n"
+    "By focusing on skills, experience, and potential, ResumAI helps you build a stronger team\n\n"
+    "while streamlining your hiring process and empowering confident, informed decisions.\n\n" 
 )
 
 def create_main_menu_window():
     WINDOW = tk.Tk() 
     
     main_menu_frame = create_window(WINDOW, window_name='ResumAI')
-    # img_label, text_editor = create_elements(WINDOW, main_menu_frame)
+    #img_label, text_editor = create_elements(WINDOW, main_menu_frame, "PDF.png")
+    null, img_label = create_image(main_menu_frame, "interview.png", width = 400, height = 400)
     
-    upload_btn = create_button(main_menu_frame, "Upload", 10, 6)
-    check_btn = create_button(main_menu_frame, "Create", 10, 6)
+    upload_btn = create_button(main_menu_frame, "Upload", 12, 4)
+    check_btn = create_button(main_menu_frame, "Create", 12, 4)
     
-    upload_label = create_label(main_menu_frame, text="Upload Your Resume For Revision", font=("Times New Roman", 22))
-    build_label = create_label(main_menu_frame, text="Start Building A Brand New Resume", font=("Times New Roman", 22))
+    upload_label = create_label(main_menu_frame, text="Upload A Resume For Grading", font=("Times New Roman", 22))
+    build_label = create_label(main_menu_frame, text="Create Interview Questions For Applicant", font=("Times New Roman", 22))
     description_label = create_label(main_menu_frame, text=description, font=("Times New Roman", 14))
     title_label = create_label(main_menu_frame, text='ResumAI', font=("Times New Roman", 60))
+
     # Placement
     
-    upload_btn.place(x=100, y=300)
-    check_btn.place(x=100, y = 600)
+    upload_btn.place(x=80, y=275)
+    check_btn.place(x=80, y = 575)
     
-    # img_label.place(x=400, y = 50)
-    # text_editor.place(x=50, y= 450)
+    
+    #text_editor.place(x=50, y= 450)
+    img_label.place(x=600, y = 350)
     
     upload_label.place(x=10, y=200)
     description_label.place(x=500, y = 100)
